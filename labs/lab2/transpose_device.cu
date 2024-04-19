@@ -40,7 +40,8 @@ void naiveTransposeKernel(const float *input, float *output, int n) {
     const int i = threadIdx.x + 64 * blockIdx.x;
     int j = 4 * threadIdx.y + 64 * blockIdx.y;
     const int end_j = j + 4;
-
+    // input is accessed in a coalesced manner
+    // while output is not
     for (; j < end_j; j++)
         output[j + n * i] = input[i + n * j];
 }
@@ -53,7 +54,7 @@ void shmemTransposeKernel(const float *input, float *output, int n) {
     // padding). Again, comment on all sub-optimal accesses.
 
     // __shared__ float data[???];
-
+    
     const int i = threadIdx.x + 64 * blockIdx.x;
     int j = 4 * threadIdx.y + 64 * blockIdx.y;
     const int end_j = j + 4;
