@@ -5,7 +5,7 @@ LD_FLAGS = -lrt
 CUDA_PATH       ?= /usr
 CUDA_INC_PATH   ?= $(CUDA_PATH)/include
 CUDA_BIN_PATH   ?= $(CUDA_PATH)/bin
-CUDA_LIB_PATH   ?= $(CUDA_PATH)/lib
+CUDA_LIB_PATH   ?= $(CUDA_PATH)/lib64
 
 # CUDA code generation flags
 GENCODE_FLAGS   := -gencode arch=compute_50,code=sm_50 \
